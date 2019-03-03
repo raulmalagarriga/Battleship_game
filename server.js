@@ -12,3 +12,7 @@ app.use(express.static(__dirname + '/public'));
 http.listen(port, function(){
     console.log('listening on *:' + port);
 });
+
+io.on('connection', function(socket){
+    console.log('socket connected');
+})
