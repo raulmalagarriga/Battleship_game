@@ -6,6 +6,8 @@ $(function() {
      
     socket.on('connect', function() {
       console.log('Connected to server.');
+      $('#disconnected').hide(); //
+      $('#waiting-room').show();  //
   
     });
   
@@ -14,6 +16,8 @@ $(function() {
      
     socket.on('disconnect', function() {
       console.log('Disconnected from server.');
-     
+      $('#waiting-room').hide();
+      $('#game').hide();
+      $('#disconnected').show();
     });
 });

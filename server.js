@@ -15,4 +15,4 @@ http.listen(port, function(){
 
 io.on('connection', function(socket){
     console.log('socket connected');
-})
+});
