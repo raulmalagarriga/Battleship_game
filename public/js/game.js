@@ -91,11 +91,39 @@ function drawMarks(gridIndex) {
       }
     }
   };
+  //new game
+  function initGame() {
+    var i;
+
+    gameStatus = GameStatus.inProgress;
+    
+    // Create empty grids for player and opponent
+    grid[0] = { shots: Array(gridRows * gridCols), ships: [] };
+    grid[1] = { shots: Array(gridRows * gridCols), ships: [] };
+
+    for(i = 0; i < gridRows * gridCols; i++) {
+      grid[0].shots[i] = 0;
+      grid[1].shots[i] = 0;
+    }
+
+    // Reset turn status classes
+    $('#turn-status').removeClass('alert-your-turn').removeClass('alert-opponent-turn')
+            .removeClass('alert-winner').removeClass('alert-loser');
+
+    drawGrid(0);
+    drawGrid(1);
+  }; 
   function drawGrid(gridIndex) {
     drawSquares(gridIndex);
     drawShips(gridIndex);
     drawMarks(gridIndex);
   };
-drawGrid();//only testing  
+drawGrid(0);//only testing 
+drawGrid(1);//same 
+console.log('llegueaqui');
 });
 
+var GameStatus = {
+    inProgress: 1,
+    gameOver: 2
+  }

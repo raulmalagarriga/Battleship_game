@@ -16,8 +16,8 @@ $(function() {
      
     socket.on('disconnect', function() {
       console.log('Disconnected from server.');
-      $('#waiting-room').hide();
-      $('#game').hide();
-      $('#disconnected').show();
+         $('#waiting-room').hide();
+         $('#game').hide();
+         $('#disconnected').show();
     });
 });
