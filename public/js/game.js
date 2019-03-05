@@ -91,6 +91,23 @@ function drawMarks(gridIndex) {
       }
     }
   };
+  //Update grids
+  function updateGrid(player, gridState) {
+    grid[player] = gridState;
+    drawGrid(player);
+  };
+  //Set client s turn
+  function setTurn(turnState) {
+    if(gameStatus !== GameStatus.gameOver) {
+      turn = turnState;
+
+      if(turn) {
+        $('#turn-status').removeClass('alert-opponent-turn').addClass('alert-your-turn').html('It\'s your turn!');
+      } else {
+        $('#turn-status').removeClass('alert-your-turn').addClass('alert-opponent-turn').html('Waiting for opponent.');
+      }
+    }
+  }; 
   //new game
   function initGame() {
     var i;
@@ -122,8 +139,3 @@ drawGrid(0);//only testing
 drawGrid(1);//same 
 console.log('llegueaqui');
 });
-
-var GameStatus = {
-    inProgress: 1,
-    gameOver: 2
-  }
