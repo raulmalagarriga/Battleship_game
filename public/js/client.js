@@ -27,10 +27,5 @@ $(function() {
     $('#game').show();
     $('#game-number').html(gameId);
   })
-  //Update player s game 
-  socket.on('update', function(gameState) {
-    Game.setTurn(gameState.turn);
-    Game.updateGrid(gameState.gridIndex, gameState.grid);
-  });
-
+  //socket update doesnt work
 });

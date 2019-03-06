@@ -112,7 +112,7 @@ function drawMarks(gridIndex) {
   function initGame() {
     var i;
 
-    gameStatus = GameStatus.inProgress;
+    //gameStatus = GameStatus.inProgress;
     
     // Create empty grids for player and opponent
     grid[0] = { shots: Array(gridRows * gridCols), ships: [] };
@@ -134,8 +134,14 @@ function drawMarks(gridIndex) {
     drawSquares(gridIndex);
     drawShips(gridIndex);
     drawMarks(gridIndex);
-  };
+  };//Set gameover and show a message
+  function setGameOver(isWinner){
+    gameStatus = GameStatus.gameOver;
+    turn = false;
+    console.log('GameOver');
+  }
 drawGrid(0);//only testing 
 drawGrid(1);//same 
+initGame();//testing
 console.log('llegueaqui');
 });
