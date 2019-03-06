@@ -121,7 +121,7 @@ function drawMarks(gridIndex) {
     for(i = 0; i < gridRows * gridCols; i++) {
       grid[0].shots[i] = 0;
       grid[1].shots[i] = 0;
-    }
+    } 
 
     // Reset turn status classes
     $('#turn-status').removeClass('alert-your-turn').removeClass('alert-opponent-turn')
@@ -138,7 +138,13 @@ function drawMarks(gridIndex) {
   function setGameOver(isWinner){
     gameStatus = GameStatus.gameOver;
     turn = false;
-    console.log('GameOver');
+    if(isWinner) {
+      $('#turn-status').removeClass('alert-opponent-turn').removeClass('alert-your-turn')
+              .addClass('alert-winner').html('You won! <a href="#" class="btn-leave-game">Play again</a>.');
+    } else {
+      $('#turn-status').removeClass('alert-opponent-turn').removeClass('alert-your-turn')
+              .addClass('alert-loser').html('You lost. <a href="#" class="btn-leave-game">Play again</a>.');
+    }
   }
 drawGrid(0);//only testing 
 drawGrid(1);//same 
