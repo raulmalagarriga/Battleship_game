@@ -146,8 +146,48 @@ function drawMarks(gridIndex) {
               .addClass('alert-loser').html('You lost. <a href="#" class="btn-leave-game">Play again</a>.');
     }
   }
+  //just an event... Highlight oponent squares if mouse is hover.
+  canvas[1].addEventListener('mousemove', function(e) {
+    var pos = getCanvasCoordinates(e, canvas[1]);
+    squareHover = getSquare(pos.x, pos.y);
+    drawGrid(1);
+  });
+
+  //Inverted event
+  canvas[1].addEventListener('mouseout', function(e) {
+    squareHover = { x: -1, y: -1};
+    drawGrid(1);
+  });
+
+  //Fire event
+  canvas[1].addEventListener('click', function(e) {
+    var pos = getCanvasCoordinates(e, canvas[1]);
+    var square = getSquare(pos.x, pos.y);
+    sendShoot(square);
+  });
+
+  function getSquare(x, y) {
+    return {
+      x: Math.floor(x / (gridWidth / gridCols)),
+      y: Math.floor(y / (gridHeight / gridRows))
+    };
+  };
+
+  function getCanvasCoordinates(event, canvas) {
+    rect = canvas.getBoundingClientRect();
+    return {
+      x: Math.round((event.clientX - rect.left) / (rect.right - rect.left) * canvas.width),
+      y: Math.round((event.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height)
+    };
+  };
 drawGrid(0);//only testing 
 drawGrid(1);//same 
 initGame();//testing
 console.log('llegueaqui');
+return {
+  'initGame': initGame,
+  'setGameOver': setGameOver,
+  'updateGrid': updateGrid,
+  'setTurn': setTurn
+};
 });

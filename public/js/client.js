@@ -27,5 +27,28 @@ $(function() {
     $('#game').show();
     $('#game-number').html(gameId);
   })
-  //socket update doesnt work
+  //Update player's game status
+  socket.on('update', function(gameState) {
+    Game.setTurn(gameState.turn);
+    Game.updateGrid(gameState.gridIndex, gameState.grid);
+  });
+
+  //Change game status to over
+  socket.on('gameover', function(isWinner) {
+    Game.setGameOver(isWinner);
+  });
+
+  //Leave game and join waiting room.
+  socket.on('leave', function() {
+    $('#game').hide();
+    $('#waiting-room').show();
+  });
 });
+function sendLeaveRequest(e) {
+  e.preventDefault();
+  socket.emit('leave');
+}
+
+function sendShot(square) {
+  socket.emit('shot', square);
+}
