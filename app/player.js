@@ -13,6 +13,7 @@ function Player(id){
     this.shipGrid = -1;
   }
   if (!this.createRandomShips()) {
+    //if random ship placement fail, use this as default
     this.ships = [];
     this.createShips();
   }
@@ -41,7 +42,7 @@ Player.prototype.getSunkShips = function() {
     }
   }
   return sunkShips;
-}
+};
 
 Player.prototype.getShipsLeft = function() {
   var i, shipCount = 0;
@@ -51,7 +52,7 @@ Player.prototype.getShipsLeft = function() {
     }
   }
   return shipCount;
-}
+};
 
 Player.prototype.createRandomShips = function() {
   var shipIndex;
