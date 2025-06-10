@@ -5,6 +5,10 @@
   "author": {
     "name": "Proyecto 2 Raul Javier"
   },
+  "scripts": {
+    "build": "echo \"No build step required\"",
+    "start": "node server.js"
+  },
   "dependencies": {
     "express": "^4.12.3",
     "html-entities": "1.1.2",
